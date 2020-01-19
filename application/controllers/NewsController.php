@@ -2,10 +2,12 @@
 
 namespace application\controllers;
 
-class NewsController 
+use application\core\Controller;
+
+class NewsController extends Controller 
 {
     public function showAction()
     {
-        echo 'OK';
+        
     }
 }

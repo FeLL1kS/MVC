@@ -26,7 +26,7 @@ class Router
                 
                 if(method_exists($controller, $action))
                 {
-                    $controller = new $controller;
+                    $controller = new $controller($this->params);
                     $controller->$action();
                 }
                 else
