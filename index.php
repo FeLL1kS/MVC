@@ -1,12 +1,20 @@
 <?php
 
-require_once 'application/libs/Dev.php';
+// debug function
+function debug($arr) 
+{
+    echo "<pre>".var_dump($arr).'</pre>';
+    exit;
+}
 
 use application\core\Router;
 
-spl_autoload_register(function($class) {
+spl_autoload_register(function($class) 
+{
     $path = str_replace('\\', '/', $class.'.php');
-    if (file_exists($path)) {
+
+    if (file_exists($path))
+    {
         require $path;
     }
 });
