@@ -18,15 +18,15 @@ class Router
 
         if($this->match())
         {
-            $controller = 'application\controllers\\'.ucfirst($this->params['controller']).'Controller';
+            $path = 'application\controllers\\'.ucfirst($this->params['controller']).'Controller';
             // echo '<b>controller: </b>'.$controller.'<br><b>action: </b>'.$this->params['action'];
-            if(class_exists($controller)) 
-            {
+            if(class_exists($path)) 
+            { 
                 $action = $this->params['action'].'Action';
-                
-                if(method_exists($controller, $action))
+
+                if(method_exists($path, $action))
                 {
-                    $controller = new $controller($this->params);
+                    $controller = new $path($this->params);
                     $controller->$action();
                 }
                 else
@@ -36,7 +36,7 @@ class Router
             }
             else 
             {
-                echo 'Контроллер <b>'.$controller.'</b> не существует';
+                echo 'Контроллер <b>'.$path.'</b> не существует';
             }
         }
         else
@@ -53,6 +53,7 @@ class Router
     public function match() 
     {
         $url = trim($_SERVER['REQUEST_URI'], '/');
+        
         foreach ($this->routes as $key => $value) 
         {
             if($key === $url) {
@@ -62,10 +63,5 @@ class Router
         }
 
         return false;
-    }
-
-    public function run() 
-    {
-
     }
 }

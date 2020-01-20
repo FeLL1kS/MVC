@@ -8,6 +8,6 @@ class NewsController extends Controller
 {
     public function showAction()
     {
-        
+        $this->view->render('Show Page');
     }
 }

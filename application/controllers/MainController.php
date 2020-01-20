@@ -8,6 +8,6 @@ class MainController extends Controller
 {
     public function indexAction()
     {
-        echo 'OK';
+        $this->view->render('Main Page');
     }
 }
