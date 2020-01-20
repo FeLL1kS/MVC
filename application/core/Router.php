@@ -19,7 +19,6 @@ class Router
         if($this->match())
         {
             $path = 'application\controllers\\'.ucfirst($this->params['controller']).'Controller';
-            // echo '<b>controller: </b>'.$controller.'<br><b>action: </b>'.$this->params['action'];
             if(class_exists($path)) 
             { 
                 $action = $this->params['action'].'Action';
@@ -31,17 +30,17 @@ class Router
                 }
                 else
                 {
-                    echo 'Метод <b>'.$action.'</b> не существует';
+                    View::error(404);
                 }
             }
             else 
             {
-                echo 'Контроллер <b>'.$path.'</b> не существует';
+                View::error(404);
             }
         }
         else
         {
-            echo '404';
+            View::error(404);
         }
     }
     
@@ -58,7 +57,7 @@ class Router
         {
             if($key === $url) {
                 $this->params = $value;
-                return true; 
+                return true;
             }
         }
 
